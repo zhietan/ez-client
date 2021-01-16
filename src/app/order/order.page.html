@@ -1,0 +1,336 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+    <ion-icon class="icon-header" name="document" slot="start"></ion-icon>
+    <ion-title>My Order</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+    <ion-row>
+    <ion-segment [(ngModel)]="list_data">
+        <ion-segment-button value="list-1" (click)="load_pending()">
+          <ion-label><b class="segment">PENDING</b></ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="list-2" (click)="load_reserved()">
+            <ion-label>
+                <b class="segment">RESERVED</b>
+               
+            </ion-label>
+            
+        </ion-segment-button>
+        
+
+        <ion-segment-button value="list-3" (click)="load_ongoing()">
+            <ion-label>
+                <b class="segment">ON GOING</b>
+                <ion-badge *ngIf="ongoing_badge > 0"  color="danger" mode="ios" class="badge">{{ongoing_badge}}</ion-badge>
+            </ion-label>
+         
+        </ion-segment-button>
+        <ion-segment-button value="list-4" (click)="load_complete()">
+         <b class="segment">COMPLETED</b>
+        </ion-segment-button>
+        <!-- <ion-segment-button value="list-4">
+            <b class="segment">CANCEL</b>
+           </ion-segment-button> -->
+      </ion-segment>
+    </ion-row>
+    <ion-row [ngSwitch]="list_data">
+        <ion-col *ngSwitchCase="'list-1'">
+            <ion-list *ngIf="lazy_loading" >
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+
+           <ion-list *ngIf="!lazy_loading" >
+            <ion-label *ngIf="!orderPending || orderPending.length === 0">
+                <p style="text-align: center; margin-top: 30%;">Data tidak tersedia</p>
+            </ion-label>
+            <ion-item *ngFor="let item of orderPending" (click)="goDetail(item)">
+                <span slot="start" class="icon-item">
+                    <ion-icon *ngIf="item.type==='Cleaning'" slot="icon-only" class="icon-water" name="water"></ion-icon>
+                    <ion-icon *ngIf="item.type==='Laundry'" slot="icon-only" class="icon-shirt" name="shirt"></ion-icon>
+                </span>
+                <ion-label>
+                    <b>{{item.service_type}}</b>
+                    <p class="qty-set">{{item.qty}}</p>
+                    <p class="time-set">{{item.schedule}}</p>
+                </ion-label>
+            </ion-item>
+           </ion-list>
+        </ion-col>
+
+        <ion-col *ngSwitchCase="'list-2'">
+            <ion-list *ngIf="lazy_loading" >
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngIf="!lazy_loading" >
+                <ion-label *ngIf="!orderReserved || orderReserved.length === 0">
+                    <p style="text-align: center;">Data tidak tersedia.</p>
+                </ion-label>
+                <ion-item *ngFor="let item of orderReserved" (click)="goDetail(item)">
+                    <span slot="start" class="icon-item" *ngIf="item.type==='Laundry'">
+                        <ion-badge *ngIf="otw_order_id == item.order_id"  color="success" class="badge-status">on the way</ion-badge>
+                        <ion-icon  slot="icon-only" class="icon-shirt" name="shirt"></ion-icon>
+                    </span>
+
+                    <span slot="start" class="icon-item" *ngIf="item.type==='Cleaning'">
+                        <ion-badge *ngIf="otw_order_id == item.order_id" color="success" class="badge-status">on the way</ion-badge>
+                        <ion-icon  slot="icon-only" class="icon-water" name="water"></ion-icon>
+                    </span>
+
+                    <ion-label>
+                        <b>{{item.service_type}}</b>
+                        <p class="qty-set">{{item.qty}}</p>
+                        <p class="time-set">{{item.schedule}}</p>
+                    </ion-label>
+                </ion-item>
+               </ion-list>
+        </ion-col>
+        <ion-col *ngSwitchCase="'list-3'">
+            <ion-list *ngIf="lazy_loading" >
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+            <ion-list *ngIf="!lazy_loading" >
+                <ion-label *ngIf="!orderGoing || orderGoing.length === 0">
+                    <p style="text-align: center;">Data tidak tersedia.</p>
+                </ion-label>
+                <ion-item *ngFor="let item of orderGoing" (click)="goDetail(item)">
+                    <span slot="start" class="icon-item" *ngIf="item.type==='Laundry'">
+                        <ion-badge  color="success" class="badge-status">on the way</ion-badge>
+                        <ion-icon  slot="icon-only" class="icon-shirt" name="shirt"></ion-icon>
+                    </span>
+
+                    <span slot="start" class="icon-item" *ngIf="item.type==='Cleaning'">
+                        <ion-badge color="success" class="badge-status">on the way</ion-badge>
+                        <ion-icon  slot="icon-only" class="icon-water" name="water"></ion-icon>
+                    </span>
+
+                    <ion-label>
+                        <b>{{item.service_type}}</b>
+                        <p class="qty-set">{{item.qty}}</p>
+                        <p class="time-set">{{item.schedule}}</p>
+                    </ion-label>
+                </ion-item>
+               </ion-list>
+        </ion-col>
+        <ion-col *ngSwitchCase="'list-4'">
+            <ion-list *ngIf="lazy_loading" >
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-avatar>
+                    <ion-label>
+                        <h3><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></h3>
+                        <p><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></p>
+                        <p><ion-skeleton-text animated style="width: 60%"></ion-skeleton-text></p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngIf="lazy_loading" >
+                <ion-label *ngIf="!orderComplete || orderComplete.length === 0">
+                    <p style="text-align: center;">Data tidak tersedia.</p>
+                </ion-label>
+                <ion-item *ngFor="let item of orderComplete" (click)="goDetail(item)">
+                    <span slot="start" class="icon-item">
+                        <ion-icon *ngIf="item.type==='Cleaning'" slot="icon-only" class="icon-water" name="water"></ion-icon>
+                        <ion-icon *ngIf="item.type==='Laundry'" slot="icon-only" class="icon-shirt" name="shirt"></ion-icon>
+                    </span>
+                    <ion-label>
+                        <b>{{item.service_type}}</b>
+                        <p class="qty-set">{{item.qty}}</p>
+                        <p class="time-set">{{item.schedule}}</p>
+                    </ion-label>
+                </ion-item>
+               </ion-list>
+        </ion-col>
+    </ion-row>
+</ion-content>

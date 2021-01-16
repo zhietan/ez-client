@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+    <ion-toolbar class="header background">
+    <ion-buttons slot="start">
+        <!-- <ion-back-button></ion-back-button> -->
+        <ion-back-button (click)="back()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Verifikasi Kode</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="content">
+<form [formGroup] = "FormOTP" (ngSubmit)="sendOtpConfirmation()">
+    <ion-row class="temp-content">
+        <ion-col size="12">
+            <img src="../../assets/images/logo.png" class="logo" alt="Logo"/>
+        </ion-col> 
+        <ion-col size="12" class="form-content">
+            <div class="form-input">
+                <ion-label class="label white">Masukkan Kode OTP</ion-label>
+                <ion-row>
+                    <ion-col size="3">
+                        <ion-input formControlName="first" name="first" type="text"  [(ngModel)] = "FormOTP.first" #otp1 required maxLength="1" (keyup)="otpController($event,otp2,'')">
+                        </ion-input>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-input formControlName="second" name="second" type="text" [(ngModel)] = "FormOTP.second" #otp2 required maxLength="1" (keyup)="otpController($event,otp3,otp1)">
+                        </ion-input>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-input formControlName="third" name="third" type="text" [(ngModel)] = "FormOTP.third" #otp3 required maxLength="1" (keyup)="otpController($event,otp4,otp2)">
+                        </ion-input>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-input formControlName="fourth" name="fourth" type="text" [(ngModel)] = "FormOTP.fourth" #otp4 required maxLength="1" (keyup)="otpController($event,'',otp3)">
+                        </ion-input>
+                    </ion-col>
+                </ion-row>
+                <p class="label white left">Harap tunggu 30 Detik sebelum mengirim ulang OTP</p>
+                <div id="countdown">
+                    <div id="countdown-number"></div>
+                    <svg>
+                      <circle id="circlecount" r="18" cx="20" cy="20"></circle>
+                    </svg>
+                  </div>
+                  
+                  <p class="label white left">Kode OTP belum masuk? <a id="resendlink" (click)="loginApiFunc()" class="link white left">Kirim Ulang</a></p>
+                
+            </div>           
+        </ion-col>
+        <ion-col size="12" class="form-button">
+            <ion-button type="submit" expand="block" size="medium" [disabled]="!FormOTP.valid" >
+                Verifikasi OTP
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</form>
+</ion-content>

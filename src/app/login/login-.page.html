@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content [fullscreen]="true" class="content">
+    <form [formGroup] = "FormLogin" (ngSubmit)="loginApiFunc()">
+    <div class="content">
+      <h1 class="title">Login</h1>
+      <span>Ketikkan nomor handphone anda yang sudah terdaftar</span>
+  
+      <ion-item class="items">
+        <ion-label position="stacked">Nomor Handphone</ion-label>
+        <ion-input type="tel" placeholder="+62 1234567" name="phone" formControlName="phone"></ion-input>
+      </ion-item>
+      
+    </div>
+  
+    <ion-fab vertical="center" horizontal="end" slot="fixed" class="fab-next" color="secondary">
+      <ion-button [disabled]="!FormLogin.valid" type="submit" class="manual-button" expand="block" size="medium">
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-fab>
+    </form>
+  </ion-content>

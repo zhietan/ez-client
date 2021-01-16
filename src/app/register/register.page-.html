@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button (click)="back()"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true" class="content">
+<form [formGroup] = "FormRegister" (ngSubmit)="registerApiFunc()">
+    <div class="content">
+      <h1 class="title">Register</h1>
+      <span>Ketikkan nomor data diri anda beserta nomor handphone, kami akan mengirimkan OTP via Whatsapp.</span>
+      
+      <ion-item class="items">
+        <ion-label position="stacked">Nama Lengkap</ion-label>
+        <ion-input name="name" formControlName="name" type="text" placeholder="Masukkan Nama Lengkap"></ion-input> 
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input name="email" formControlName="email" type="text" placeholder="Masukkan Alamat Email"></ion-input> 
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Nomor Handphone</ion-label>
+        <ion-input name="phone" formControlName="phone" type="number" placeholder="+62 1234567"></ion-input> 
+      </ion-item>
+    </div>
+  
+    <ion-fab vertical="center" horizontal="end" slot="fixed" class="fab-next" color="secondary">
+
+            <ion-button expand="block" size="medium" [disabled]="!FormRegister.valid" type="submit">
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </ion-button>
+              </ion-fab>
+
+  </form>
+  </ion-content>

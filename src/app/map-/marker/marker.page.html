@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+     <ion-buttons slot="start">
+       <ion-back-button></ion-back-button>
+     </ion-buttons>
+    </ion-buttons>
+    <ion-title>Tracking Map</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main_content_div">
+
+    <div class="upper_div">
+      <div #map id="map" class="map"></div>
+    </div>
+
+    <!-- <ion-fab style="margin-top: 8%;" vertical="center" horizontal="end" slot="fixed" (click)="startDirection()" >
+      <ion-fab-button>
+        <ion-icon name="navigate"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
+
+    <div class="lower_div">
+      <ion-label class="head_lbl">{{service}}</ion-label>
+
+      <div class="driver_detail_div">
+        <!-- <div class="back_image" [style.backgroundImage]="'url('+dCover+')'"></div> -->
+        <div style="padding-left: 20px;">
+          <ion-label class="boy_name">{{data_.nama}}</ion-label>
+          <ion-label class="address">{{data_.alamat}}</ion-label>
+          <ion-button color="success" (click)="call()" size="small" fill="outline" shape="round">
+            Call
+          </ion-button>
+        </div>
+      </div>
+
+      <ion-label class="order_detail">No Tlp<span
+          style="color: var(--ion-color-primary);position: absolute;right: 20px;">+{{data_.phone}}</span>
+      </ion-label>
+      <ion-label class="order_detail">Status<span class="order_status">{{data_.status}}</span>
+      </ion-label>
+    </div>
+
+  </div>
+</ion-content>

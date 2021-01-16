@@ -1,0 +1,101 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+    <ion-buttons slot="start">
+        <!-- <ion-back-button class="btn-back"></ion-back-button> -->
+        <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="!is_lazy" >{{service_type}}</ion-title>
+    <ion-title *ngIf="is_lazy" ><ion-skeleton-text animated style="width: 70%;height: 15px;"></ion-skeleton-text></ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+    <div align="center" *ngIf="is_otw" >
+        <img src="assets/imgs/ongoing.gif" style="width: 50%;margin-top: -30px;" alt="">
+    </div>
+    
+    <ion-row class="border-bottom" style="margin-top: 20px;">
+        <ion-col size="2">
+            <img class="img-profile" [src]="photo" *ngIf="!is_lazy" />
+            <div *ngIf="is_lazy" >
+                <ion-skeleton-text animated style="margin-left: 10px;height: 40px;width: 40px; border-radius: 20px;"></ion-skeleton-text>
+            </div>
+        </ion-col>
+        <ion-col size="6">
+            <p class="title-small margin-remove">Mitra</p>
+            <p class="title margin-minus margin-remove" *ngIf="!is_lazy">{{nama}}</p>
+            <p class="title margin-minus margin-remove" *ngIf="is_lazy"><ion-skeleton-text animated style="width: 30%;height: 15px;"></ion-skeleton-text></p>
+        </ion-col>
+        <ion-col size="2">
+            <div *ngIf="is_lazy" >
+                <ion-skeleton-text animated style="width: 50px;height: 50px;"></ion-skeleton-text>
+            </div>
+            <div *ngIf="!is_lazy" >
+                <a href="https://api.whatsapp.com/send?phone={{phone}}">
+                    <div class="mail-icon">
+                        <ion-icon class="icon-set" name="mail-outline"></ion-icon>
+                    </div>
+                </a>
+            </div>
+
+           
+        </ion-col>
+        <ion-col size="2">
+            <div *ngIf="is_lazy" >
+                <ion-skeleton-text animated style="width: 50px;height: 50px;"></ion-skeleton-text>
+            </div>
+            <div *ngIf="!is_lazy" >
+                <a href="tel:{{phone}}">
+                    <div class="call-icon">
+                        <ion-icon class="icon-set" name="call-outline"></ion-icon>
+                    </div>
+                </a>
+            </div>
+            
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="12">
+            <p class="title-small margin-remove">Status</p>
+            <p class="title margin-minus margin-remove red" *ngIf="!is_lazy" >{{status}} 
+                <ion-chip outline color="success" *ngIf="is_otw" class="chip-otw" >
+                    <ion-label>Mitra sedang di jalan</ion-label>
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  </ion-chip>
+                <ion-chip outline color="medium" *ngIf="!is_otw" class="chip-otw" >
+                    <ion-label>Menunggu Approval Mitra</ion-label>
+                    <ion-icon name="hourglass-outline"></ion-icon>
+                  </ion-chip>
+            </p>
+            <p class="title margin-minus margin-remove red" *ngIf="is_lazy"  ><ion-skeleton-text animated style="width: 60%;height: 15px;"></ion-skeleton-text></p>
+        </ion-col>
+        <ion-col size="12" class="margin-minus">
+            <p class="title-small margin-remove">Tipe Service</p>
+            <p class="title margin-minus margin-remove" *ngIf="!is_lazy" >{{service_type}}</p>
+            <p class="title margin-minus margin-remove" *ngIf="is_lazy" ><ion-skeleton-text animated style="width: 50%;height: 15px;"></ion-skeleton-text></p>
+        </ion-col>
+        <ion-col size="6" class="margin-minus">
+            <p class="title-small margin-remove">Tanggal Order</p>
+            <p class="title margin-minus margin-remove" *ngIf="!is_lazy" >{{date_order}}</p>
+            <p class="title margin-minus margin-remove" *ngIf="is_lazy" ><ion-skeleton-text animated style="width: 90%;height: 15px;"></ion-skeleton-text></p>
+        </ion-col>
+        <ion-col size="6" class="margin-minus">
+            <p class="title-small margin-remove">Tanggal Selesai</p>
+            <p class="title margin-minus margin-remove" *ngIf="!is_lazy" >{{date_order}}</p>
+            <p class="title margin-minus margin-remove" *ngIf="is_lazy" ><ion-skeleton-text animated style="width: 80%;height: 15px;"></ion-skeleton-text></p>
+        </ion-col>
+        <ion-col size="12" class="margin-minus">
+            <p class="title-small margin-remove">Alamat</p>
+            <p class="title margin-minus margin-remove" *ngIf="!is_lazy" >{{alamat}}</p>
+            <p class="title margin-minus margin-remove" *ngIf="is_lazy" >
+                <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 70%;"></ion-skeleton-text></p>
+            <p>
+                <!-- <a class="btn-manual" (click)="goMap(latitude,longitude)">Lihat Peta</a> -->
+            </p>
+        </ion-col>
+    </ion-row>
+    <ion-button *ngIf="status == 'Reserved' && is_otw || status == 'On Going' && is_otw"  (click)="goMap(latitude,longitude)" shape="round" expand="block" fill="outline">
+        <ion-icon slot="icon-only" name="map-outline" style="font-size: 1rem;margin-right: 5px;"></ion-icon>
+        Tracking Order Sekarang
+    </ion-button>
+</ion-content>

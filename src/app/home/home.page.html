@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  <span slot="start">
+    <img class="icon-header" src="../../assets/images/tes-icon.png"/>
+  </span>
+  <ion-title>EZklin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-slides [options]="slideOptions" pager="true" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)">
+
+    <ion-slide>
+      <div class="slide">
+        <img
+      src="../../assets/images/slider/slider-03.png"
+      />
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <img
+      src="../../assets/images/slider/slider-01.png"
+      />
+    </ion-slide>
+
+    <ion-slide>
+      <img
+      src="../../assets/images/slider/slider-02.png"
+      />
+    </ion-slide>
+
+  </ion-slides>
+  
+  <ion-grid>
+    <h4>Layanan Kami</h4>
+    <ion-row>
+      <!-- <ion-col>
+        <img (click)="goBookservice(1,'Cleaning')" class="icon-header" src="../../assets/images/Group 42(1).png" style="width: 90%;"/>
+      </ion-col> -->
+      <ion-col xs>
+        <img (click)="goBooking()" class="icon-header" src="../../assets/service/cleaning.png" style="width: 90%;"/>
+      </ion-col>
+      <ion-col>
+        <img class="icon-header" src="../../assets/service/laundry.png" style="width: 90%;"/>
+      </ion-col>
+      <ion-col>
+        <img class="icon-header" src="../../assets/service/delivery.png" style="width: 90%;"/>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <!-- <ion-col>
+        <img (click)="goBookservice(1,'Cleaning')" class="icon-header" src="../../assets/images/Group 42(1).png" style="width: 90%;"/>
+      </ion-col> -->
+      <ion-col>
+        <img class="icon-header" src="../../assets/service/ac.png" style="width: 90%;"/>
+      </ion-col>
+      <ion-col>
+        <img class="icon-header" src="../../assets/service/sofa.png" style="width: 90%;"/>
+      </ion-col>
+      <ion-col>
+        <img class="icon-header" src="../../assets/service/cuci_mobil.png" style="width: 90%;"/>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row class="slider">
+    <!--Parameter 3 : partner_id,type_service,nominal-->
+    <ion-slide>
+      <img
+      src="../../assets/images/Rectangle 26(1).png
+      "
+      />
+    </ion-slide>
+  </ion-row>
+
+  <!-- <ion-row class="slider">
+    
+    <ion-slide (click)="goBookservice(1,'Cleaning')">
+      <img
+      src="../../assets/images/slider/cleaning-service.png"
+      />
+    </ion-slide>
+  </ion-row>
+  <ion-row class="slider">
+     
+      <ion-slide>
+        
+        <img
+        src="../../assets/images/slider/LaundrySegeraHadir.png"
+        />
+
+      </ion-slide>
+  </ion-row> -->
+
+</ion-content>

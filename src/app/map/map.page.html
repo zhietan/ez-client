@@ -1,0 +1,53 @@
+
+
+<ion-content>
+<img src="../../../assets/imgs/map.png" alt="">
+<!-- <ion-searchbar (ionInput)="getItems($event)" class="search"></ion-searchbar> -->
+<ion-searchbar (ngModel)="alamat2" placeholder="Search Location" name="alamat2" (ionInput)="gmaps($event)"></ion-searchbar>
+
+<ion-list [hidden]="!ishidden.length">
+  <ion-item *ngFor="let result of geoSearchResult" tappable (click)="checkedLocation(result.description)">
+      <ion-icon name="bookmark-outline" slot="start"></ion-icon>  <p style="color:#3f504c;margin:4px;">{{ result.description }}</p>
+  </ion-item>
+</ion-list>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="secondary" (click)="goBack()">
+      <ion-icon name="close"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+ <!-- <ion-item class="ion-activatable ripple-parent" (click)="back()">
+  <ion-ripple-effect></ion-ripple-effect>
+  <ion-avatar slot="start">
+    <ion-icon style="font-size: 2rem;" name="locate"></ion-icon>
+  </ion-avatar>
+  <ion-label>
+    <h2 style="font-weight: bold;">Pakai Lokasi saat ini</h2>
+  </ion-label>
+</ion-item>
+<ion-item  class="ion-activatable ripple-parent" (click)="back()">
+  <ion-ripple-effect></ion-ripple-effect>
+  <ion-avatar slot="start">
+    <ion-icon style="font-size: 2rem;" name="flag"></ion-icon>
+  </ion-avatar>
+  <ion-label>
+    <h2 style="font-weight: bold;">Soluxis Office</h2>
+    <p>Jl. Rose Garden 3 No.29, RT.002/RW.017, Jaka Setia, Kec. Bekasi Sel., Kota Bks, Jawa Barat 17147</p>
+  </ion-label>
+</ion-item>
+<ion-item  class="ion-activatable ripple-parent" (click)="back()">
+  <ion-ripple-effect></ion-ripple-effect>
+  <ion-avatar slot="start">
+    <ion-icon style="font-size: 2rem;color: grey;" name="flag"></ion-icon>
+  </ion-avatar>
+  <ion-label>
+    <h2 style="font-weight: bold;">PT. Novatama Solusi Teknologi</h2>
+    <p>Jl. Rose Garden 3 No.29, RT.002/RW.017, Jaka Setia, Kec. Bekasi Sel., Kota Bks, Jawa Barat 17147</p>
+  </ion-label>
+</ion-item> -->
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="back()" expand="block" fill="clear" shape="round">
+    Batal
+  </ion-button>
+</ion-footer>

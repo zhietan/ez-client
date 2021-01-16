@@ -1,0 +1,118 @@
+<!-- <ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar color="secondary">
+  <ion-buttons slot="start">
+      <!-- <ion-back-button></ion-back-button> -->
+      <ion-back-button (click)="back()"></ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="head"></div>
+<div class="head-title">
+  <ion-icon name="water"></ion-icon>
+  <span>Home Cleaning</span>
+</div>
+<br>
+<ion-card class="card1">
+  <ion-chip class="chip1">
+    <ion-icon style="color: #fff;" name="alert-circle-outline"></ion-icon>
+    <ion-label style="color: #fff;">Pahami Protokol Kesehatan</ion-label>
+    <ion-icon style="color: #fff;" name="chevron-forward-outline"></ion-icon>
+  </ion-chip>
+
+ <div class="content">
+    <ion-label position="stacked">Lokasi anda</ion-label>
+    <ion-row (click)="modalMap()">
+      <ion-col size="2" align="center">
+        <ion-icon style="font-size: 1.4rem;" name="map-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-input placeholder="Klik untuk membuka peta" [(ngModel)]="address_map"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2" align="center">
+        <ion-icon style="font-size: 1.4rem;" name="newspaper-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-input type="text" placeholder="Tambahkan catatan" [(ngModel)]="catatan" name="catatan" (click)="modalNote()"></ion-input>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="content">
+    <ion-row>
+      <ion-col size="7">
+        <ion-label position="stacked">Tanggal</ion-label>
+        <ion-row>
+          <ion-col size="2" align="center">
+            <ion-icon style="font-size: 1.4rem;" name="calendar-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <ion-input type="text" placeholder="Pilih Tanggal" [(ngModel)]="selectedDate" (click)="openDatePicker()"></ion-input>
+            <!-- <ion-datetime placeholder="Pilih Tanggal" value="2019-10-01T15:43:40.394Z" display-timezone="utc" [(ngModel)]="input.date"></ion-datetime> -->
+          
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="5">
+        <ion-label position="stacked">Waktu</ion-label>
+        <ion-row>
+          <ion-col size="2" align="center">
+            <ion-icon style="font-size: 1.4rem;" name="time-outline"></ion-icon>
+          </ion-col>
+          <ion-col size="10">
+            <!-- <ion-input  value="13:00"></ion-input> -->
+            <ion-datetime placeholder="Pilih Jam" display-format="HH:mm" picker-format="HH:mm"  [(ngModel)]="input.time" name="time" minuteValues="{{minMenit}}" hourValues="{{minHours}}"></ion-datetime>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="content" (click)="changePackage()">
+    <ion-label position="stacked">Paket</ion-label>
+    <div style="position: relative;">
+      <img src="../../../assets/imgs/bookservice.png" alt="" align="center" style="width: 100%;">
+      <a style="margin-left: 70%;">Ganti Paket</a>
+      
+      <ion-row class="content-select">
+        <ion-col size="6">
+          <h2>{{ package_luas }} m<sup>2</sup> </h2>
+        </ion-col>
+        <ion-col size="6">
+          <span class="text-right">{{ package_price }}</span> <br>
+          <span class="text-right">{{ package_durasi }} jam</span>
+        </ion-col>
+      </ion-row>
+    </div>
+    
+  </div>
+  <br>
+  <div class="content">
+    <ion-row>
+      <ion-col size="6" class="float-left">
+        <span>Total Pembayaran</span>
+      </ion-col>
+      <ion-col size="6" >
+        <span style="float: right;font-size: 1rem;font-weight: bold;">Rp {{ package_price }}</span>
+      </ion-col>
+    </ion-row>
+    <ion-button color="warning" (click)="submit()" expand="block"  shape="round">
+      <span style="color: #fff;text-transform: capitalize;">Pesan Sekarang</span> 
+    </ion-button>
+    <br>
+  </div>
+  
+  
+</ion-card>
+
+</ion-content>
