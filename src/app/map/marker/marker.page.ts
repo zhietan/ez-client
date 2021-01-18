@@ -264,7 +264,7 @@ export class MarkerPage implements OnInit {
       // this.changeMarkerPosition(marker, map);
       // this.watchPosision()
       this.updatePositionSocket()
-    }, 2000);
+    }, 10000);
   }
 
   call(){

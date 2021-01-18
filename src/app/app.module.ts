@@ -14,6 +14,7 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { HomePageModule } from './home/home.module';
+// const config: SocketIoConfig = { url: 'http://103.146.202.33:3000', options: {} };
 const config: SocketIoConfig = { url: 'http://127.0.0.1:3000', options: {} };
 
 @NgModule({

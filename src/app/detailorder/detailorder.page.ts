@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute,NavigationExtras } from '@angular/router';
 import { ServiceService } from './../servive/service.service';
 import { Platform,NavController,LoadingController,ToastController} from '@ionic/angular';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-detailorder',
@@ -29,17 +30,20 @@ export class DetailorderPage {
 
   is_lazy : boolean = true
   is_otw : boolean;
+  user_data : any;
   constructor(
     private router: Router,
     public route: ActivatedRoute,
     private serviceService : ServiceService,
     public loadingController : LoadingController,
     public nav : NavController,
+    private Socket : Socket 
   ) {}
   // ngOnInit() {
   //   this.order_id= this.router.getCurrentNavigation().extras.state.order_id;
   // }
   ngOnInit() {
+    this.user_data = JSON.parse(localStorage.getItem(this.serviceService.TOKEN_KEY));
     if(this.router.getCurrentNavigation().extras.state)
     {
       this.order_id = this.router.getCurrentNavigation().extras.state.order_id;
@@ -55,7 +59,27 @@ export class DetailorderPage {
       console.log('is otw',this.is_otw);
     }
   }
+  get_otw(){
+
+    console.log('connect socket, is online');
+    // this.Socket.connect();
+    this.Socket.on("online", (resp) => {
+      let customer_id = resp.user.customer_id
+      let my_id = this.user_data.data[0].customer_id;
+      if (my_id == customer_id) {
+       this.is_otw = true
+      }
+      console.log('is online orderid',resp);
+    })
+
+    this.Socket.fromEvent('online').subscribe(online => {
+      console.log('isONLINE',online);
+      
+
+    })
+  }
   ionViewWillEnter() {
+    this.get_otw()
     this.serviceService.CekUser().subscribe(data=>{
       this.set_data = data;
       console.log('cek user',this.set_data);
